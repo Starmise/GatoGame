@@ -9,6 +9,11 @@ public class MenuController : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(nextLevel, LoadSceneMode.Single);
+        SceneManager.LoadScene(nextLevel);
+    }
+
+    public void LoadGato()
+    {
+        SceneManager.LoadScene("Gato");
     }
 }
