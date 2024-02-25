@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public GameObject objeto1;
     public GameObject objeto2;
     public GameObject objeto3;
+    public GameObject objeto4;
 
     public void ToggleMsuic()
     {
@@ -26,5 +27,14 @@ public class UIController : MonoBehaviour
         objeto1.SetActive(true);
         objeto2.SetActive(true);
         objeto3.SetActive(true);
+        objeto4.SetActive(true);
+    }
+
+    public void HideSettings()
+    {
+        objeto1.SetActive(false);
+        objeto2.SetActive(false);
+        objeto3.SetActive(false);
+        objeto4.SetActive(false);
     }
 }

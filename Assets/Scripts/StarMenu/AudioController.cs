@@ -26,6 +26,7 @@ public class AudioController : MonoBehaviour
     private void Start()
     {
         PlayMusic("Theme1");
+        MusicVolume(10);
     }
 
     public void PlayMusic(string name)

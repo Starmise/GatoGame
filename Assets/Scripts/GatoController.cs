@@ -1,6 +1,7 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GatoController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GatoController : MonoBehaviour
 
     private bool win = false;
     private int turno = 1;
+    int numeroturnos;
 
     void Start()
     {
@@ -45,34 +47,40 @@ public class GatoController : MonoBehaviour
             Cruz[indice].SetActive(true);
             if (Victoria(Cruz))
             {
-                //txt_resultado.text = "¡Jugador 1 gana!";
+                PlayerPrefs.SetInt("Ganador", 1);
                 win = true;
+                SceneManager.LoadScene("GameOver");
             }
             else
             {
                 turno = 2;
                 ActualizarTurno();
             }
+            numeroturnos++;
         }
         else
         {
             Circ[indice].SetActive(true);
             if (Victoria(Circ))
             {
-                //txt_resultado.text = "¡Jugador 2 gana!";
+                PlayerPrefs.SetInt("Ganador", 2);
                 win = true;
+                SceneManager.LoadScene("GameOver");
             }
             else
             {
                 turno = 1;
                 ActualizarTurno();
             }
+            numeroturnos++;
         }
 
-        if (!win && !CuadrantesOcupados())
+        if (!win && numeroturnos>8)
         {
-            //txt_resultado.text = "¡Empate!";
+            PlayerPrefs.SetInt("Ganador", 3);
             win = true;
+            Debug.Log("Empate");
+            SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -94,7 +102,7 @@ public class GatoController : MonoBehaviour
         return false;
     }
 
-    bool CuadrantesOcupados()
+    bool CuadrantesLlenos()
     {
         foreach (GameObject cuadrante in Cruz)
         {
